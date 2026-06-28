@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="560" viewBox="0 0 440 560" font-family="-apple-system, Segoe UI, Roboto, sans-serif">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="14" flood-color="#0f172a" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <rect width="440" height="560" fill="#eef2f7"/>
+
+  <!-- popup panel -->
+  <g filter="url(#shadow)">
+    <rect x="30" y="24" width="380" height="512" rx="14" fill="#ffffff" stroke="#e2e8f0"/>
+  </g>
+
+  <!-- header -->
+  <rect x="48" y="48" width="20" height="20" rx="5" fill="#2563eb"/>
+  <rect x="48" y="48" width="9" height="9" rx="2" fill="#16a34a"/>
+  <text x="78" y="63" font-size="16" font-weight="700" fill="#0f172a">Page to CSV</text>
+  <rect x="320" y="46" width="72" height="24" rx="7" fill="#ffffff" stroke="#e2e8f0"/>
+  <text x="356" y="62" font-size="12" fill="#64748b" text-anchor="middle">Rescan</text>
+  <line x1="30" y1="84" x2="410" y2="84" stroke="#e2e8f0"/>
+
+  <text x="48" y="106" font-size="12.5" fill="#64748b">2 data sets found — pick one to export.</text>
+
+  <!-- card 1: table -->
+  <rect x="48" y="120" width="344" height="180" rx="10" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="62" y="144" font-size="13.5" font-weight="600" fill="#0f172a">Monthly Sales</text>
+  <rect x="158" y="132" width="54" height="17" rx="8" fill="#ffffff" stroke="#2563eb"/>
+  <text x="185" y="144" font-size="9.5" fill="#2563eb" text-anchor="middle" letter-spacing="0.5">TABLE</text>
+  <text x="378" y="144" font-size="11" fill="#64748b" text-anchor="end">5 rows × 4 cols</text>
+
+  <!-- mini table -->
+  <g font-size="11" fill="#0f172a">
+    <rect x="62" y="156" width="316" height="22" fill="#eaf0fd"/>
+    <text x="70" y="171" font-weight="600">Month</text>
+    <text x="150" y="171" font-weight="600">Product</text>
+    <text x="262" y="171" font-weight="600">Units</text>
+    <text x="316" y="171" font-weight="600">Revenue</text>
+    <text x="70" y="193">January</text><text x="150" y="193">Starter Plan</text><text x="262" y="193">120</text><text x="316" y="193">$2,400</text>
+    <text x="70" y="213">February</text><text x="150" y="213">Pro Plan</text><text x="262" y="213">85</text><text x="316" y="213">$8,500</text>
+    <line x1="62" y1="178" x2="378" y2="178" stroke="#e2e8f0"/>
+    <line x1="62" y1="200" x2="378" y2="200" stroke="#e2e8f0"/>
+  </g>
+  <rect x="62" y="232" width="150" height="34" rx="8" fill="#2563eb"/>
+  <text x="137" y="254" font-size="12.5" font-weight="600" fill="#ffffff" text-anchor="middle">Download CSV</text>
+  <rect x="222" y="232" width="156" height="34" rx="8" fill="#ffffff" stroke="#2563eb"/>
+  <text x="300" y="254" font-size="12.5" font-weight="600" fill="#2563eb" text-anchor="middle">Copy</text>
+
+  <!-- card 2: list (partial) -->
+  <rect x="48" y="316" width="344" height="150" rx="10" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="62" y="340" font-size="13.5" font-weight="600" fill="#0f172a">Reading List</text>
+  <rect x="152" y="328" width="42" height="17" rx="8" fill="#ffffff" stroke="#2563eb"/>
+  <text x="173" y="340" font-size="9.5" fill="#2563eb" text-anchor="middle" letter-spacing="0.5">LIST</text>
+  <text x="378" y="340" font-size="11" fill="#64748b" text-anchor="end">4 rows × 2 cols</text>
+  <g font-size="11" fill="#0f172a">
+    <rect x="62" y="352" width="316" height="22" fill="#eaf0fd"/>
+    <text x="70" y="367" font-weight="600">Item</text>
+    <text x="240" y="367" font-weight="600">Link</text>
+    <text x="70" y="389">Clean Code — R. Martin</text><text x="240" y="389" fill="#2563eb">example.com/…</text>
+    <line x1="62" y1="374" x2="378" y2="374" stroke="#e2e8f0"/>
+  </g>
+  <rect x="62" y="406" width="150" height="34" rx="8" fill="#2563eb"/>
+  <text x="137" y="428" font-size="12.5" font-weight="600" fill="#ffffff" text-anchor="middle">Download CSV</text>
+  <rect x="222" y="406" width="156" height="34" rx="8" fill="#ffffff" stroke="#2563eb"/>
+  <text x="300" y="428" font-size="12.5" font-weight="600" fill="#2563eb" text-anchor="middle">Copy</text>
+
+  <!-- footer -->
+  <line x1="30" y1="486" x2="410" y2="486" stroke="#e2e8f0"/>
+  <text x="48" y="508" font-size="11" fill="#64748b">100% local — your data never leaves your browser.</text>
+  <text x="48" y="524" font-size="11" fill="#2563eb">by İzzet · GitHub</text>
+</svg>

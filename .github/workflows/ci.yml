@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate JSON files
+        run: |
+          set -e
+          find . -name '*.json' -not -path './node_modules/*' | while read -r f; do
+            node -e "JSON.parse(require('fs').readFileSync('$f','utf8'))"
+            echo "valid JSON: $f"
+          done
+
+      - name: Syntax-check JavaScript
+        run: |
+          set -e
+          find . -name '*.js' -not -path './node_modules/*' | while read -r f; do
+            node --check "$f"
+            echo "ok: $f"
+          done
+
+      - name: Generate icons (smoke test)
+        run: node gen-icons.js
+
+      - name: Verify manifest references existing files
+        run: |
+          node -e "
+            const fs = require('fs');
+            const m = JSON.parse(fs.readFileSync('manifest.json', 'utf8'));
+            const paths = [m.action && m.action.default_popup, ...Object.values(m.icons || {})].filter(Boolean);
+            for (const p of paths) { if (!fs.existsSync(p)) throw new Error('Missing file referenced in manifest: ' + p); }
+            console.log('manifest references OK:', paths.join(', '));
+          "

@@ -1,77 +1,99 @@
+<div align="center">
+
 # Page to CSV — Table & List Extractor
 
-A lightweight Chrome (Manifest V3) extension that turns any table or list on a web page into a clean CSV with one click. **No setup, no account, no servers — extraction happens entirely in your browser, so your data never leaves your machine.**
+<img src="docs/preview.svg" alt="Page to CSV — popup detecting a table and a list on a web page" width="380" />
 
-![Manifest V3](https://img.shields.io/badge/Manifest-V3-blue) ![No data leaves browser](https://img.shields.io/badge/privacy-100%25%20local-16a34a) ![License: MIT](https://img.shields.io/badge/license-MIT-black)
+**Extract any table or list on a web page to a clean CSV with one click.**
+No setup. No account. No servers. Everything runs in your browser.
+
+[![CI](https://github.com/lfameS/page-to-csv/actions/workflows/ci.yml/badge.svg)](https://github.com/lfameS/page-to-csv/actions/workflows/ci.yml)
+![Manifest V3](https://img.shields.io/badge/Manifest-V3-2563eb)
+![Privacy: 100% local](https://img.shields.io/badge/privacy-100%25%20local-16a34a)
+![License: MIT](https://img.shields.io/badge/license-MIT-111827)
+![Zero dependencies](https://img.shields.io/badge/dependencies-0-111827)
+
+</div>
 
 ---
 
-## What it does
+## Why this exists
 
-- Scans the current page and finds every HTML **table** and meaningful **list** (`<ul>` / `<ol>`).
-- Shows a quick preview of each data set with its row/column count.
-- Exports any of them to a clean, Excel-ready **CSV** (UTF-8 with BOM, so Turkish and other non-ASCII characters open correctly), or copies it to the clipboard.
-- Handles the messy parts for you: quotes, commas and line breaks are escaped properly, `colspan` cells are expanded so columns stay aligned, and navigation menus are skipped.
+Copying data off a web page into a spreadsheet is tedious, and most "scraper" tools route your page through a remote server. **Page to CSV does it locally** — it reads the page only when you click the icon, processes everything in the browser, and never makes a network request. No backend, no analytics, no account.
 
-## Why it's safe
+## Features
 
-Most "scraper" tools send the page to a remote server. This one doesn't. It uses Chrome's `activeTab` + `scripting` APIs to read the page **only when you click the icon**, processes everything locally, and never makes a network request. There is no backend, no analytics, and no account.
+| | |
+|---|---|
+| 🧷 **Tables** | Detects every `<table>`, with proper **colspan + rowspan** grid normalization so columns stay aligned (works on Wikipedia-style merged cells). |
+| 📋 **Lists** | Detects `<ul>` / `<ol>` lists and captures item text **plus links** as a second column. Skips nav menus. |
+| 🧠 **Smart labels** | Names each data set from its caption or nearest heading, so downloads get a meaningful filename. |
+| 🧹 **Clean CSV** | RFC-style escaping for quotes, commas and newlines; **UTF-8 BOM** so Excel opens Turkish/non-ASCII text correctly. |
+| 📋 **Copy or download** | One click to download a `.csv`, or copy to clipboard to paste straight into Sheets/Excel. |
+| 🔒 **100% local** | `activeTab` + `scripting` permissions only. No host permissions, no network calls, no tracking. |
 
 ## Install (load unpacked)
 
 Works in any Chromium browser — **Brave**, Chrome, Edge, Opera, Vivaldi.
 
 1. Download or clone this repo.
-2. Run `node gen-icons.js` once to generate the icons (or skip — the browser will use a default icon).
-3. Open the extensions page:
-   - **Brave:** `brave://extensions`
-   - Chrome: `chrome://extensions` · Edge: `edge://extensions`
-4. Turn on **Developer mode** (top-right toggle).
+2. (Optional) `node gen-icons.js` to generate the icons.
+3. Open the extensions page — **Brave:** `brave://extensions` · Chrome: `chrome://extensions` · Edge: `edge://extensions`
+4. Enable **Developer mode** (top-right).
 5. Click **Load unpacked** and select this folder.
-6. Pin the extension and open any page with a table — e.g. the included `demo/sample.html` or a Wikipedia article.
+6. Pin it, then try it on the included `demo/sample.html` or any page with a table.
 
 ## Usage
 
-1. Open a page that has a table or list.
+1. Open a page with a table or list.
 2. Click the **Page to CSV** icon.
-3. Pick the data set you want and hit **Download CSV** (or **Copy**).
-
-Try it on `demo/sample.html` (in this repo) to see it work instantly.
+3. Pick a data set → **Download CSV** or **Copy**.
 
 ## How it works
 
 ```
-popup opens ──▶ inject scanAndExtract() into the active tab
-                     │
-                     ▼
-          finds <table> + <ul>/<ol>, returns plain 2D text data
-                     │
-                     ▼
-popup renders a preview ──▶ you click Export ──▶ CSV built locally ──▶ download / clipboard
+popup opens ─▶ inject scanAndExtract() into the active tab (activeTab grant)
+                    │
+                    ▼
+        find <table> + <ul>/<ol> ─▶ normalize to a grid ─▶ return plain 2D text
+                    │
+                    ▼
+popup previews each set ─▶ you click Export ─▶ CSV built locally ─▶ download / clipboard
 ```
 
-| File | Role |
-|------|------|
-| `manifest.json` | MV3 manifest (`activeTab` + `scripting` permissions only) |
-| `popup.html` / `popup.css` | The popup UI |
-| `popup.js` | Page scan, CSV building, download/copy |
-| `demo/sample.html` | A test page so you can try it immediately |
-| `gen-icons.js` | Generates the PNG icons from code |
+## Project structure
 
-## Tech
+```
+manifest.json        MV3 manifest (activeTab + scripting only)
+popup.html / .css    Popup UI
+popup.js             Page scan, table/list extraction, CSV build, download/copy
+gen-icons.js         Generates the PNG icons from code (no image libraries)
+demo/sample.html     A test page to try the extension instantly
+.github/workflows    CI: validates JSON + JS syntax on every push
+```
 
-Vanilla JavaScript, Chrome Manifest V3, `chrome.scripting.executeScript`. No dependencies, no build step.
+## Development
+
+```bash
+node gen-icons.js     # regenerate icons
+node --check popup.js # syntax check
+```
+CI runs the same JSON/JS validation on every push and pull request.
 
 ## Roadmap
 
-- Column picking / renaming before export
-- Auto-detection of repeated "card" grids (not just `<table>`/`<ul>`)
-- One-click export to Google Sheets
+- [ ] Column picking / renaming before export
+- [ ] Auto-detect repeated "card" grids (div-based, not just `<table>`/`<ul>`)
+- [ ] One-click export to Google Sheets
 
-## Hire me
+## Contributing
 
-I build small, focused tools like this — Chrome extensions, web scrapers, n8n/AI automations, and API integrations — fast and clean. See more of my work at **[github.com/lfameS](https://github.com/lfameS)**.
+Issues and PRs welcome — see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Author
+
+Built by **İzzet** — I make small, focused tools like this (Chrome extensions, scrapers, n8n/AI automations, API integrations), fast and clean. More at **[github.com/lfameS](https://github.com/lfameS)**.
 
 ## License
 
-MIT © 2026 İzzet Koyak
+[MIT](LICENSE) © 2026 İzzet Koyak
