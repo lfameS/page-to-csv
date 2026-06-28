@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Page to CSV — Table & List Extractor",
+  "version": "1.0.0",
+  "description": "Extract any table or list on a web page to a clean CSV with one click. No setup, no account, 100% local.",
+  "permissions": ["activeTab", "scripting"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Page to CSV",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

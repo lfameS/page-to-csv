@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Page to CSV — Demo Page</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 760px; margin: 40px auto; padding: 0 16px; color: #0f172a; }
+    h1 { margin-bottom: 4px; }
+    p.lead { color: #475569; margin-top: 0; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0; }
+    th, td { border: 1px solid #cbd5e1; padding: 8px 10px; text-align: left; }
+    th { background: #f1f5f9; }
+    h2 { margin-top: 32px; }
+    ul { line-height: 1.7; }
+  </style>
+</head>
+<body>
+  <h1>Page to CSV — Demo Page</h1>
+  <p class="lead">Open the extension on this page and click <strong>Rescan</strong>. It should detect the table and the list below, and let you export each to CSV.</p>
+
+  <h2>Monthly Sales</h2>
+  <table>
+    <caption hidden>Monthly Sales</caption>
+    <thead>
+      <tr><th>Month</th><th>Product</th><th>Units</th><th>Revenue (USD)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>January</td><td>Starter Plan</td><td>120</td><td>$2,400</td></tr>
+      <tr><td>February</td><td>Pro Plan, Annual</td><td>85</td><td>$8,500</td></tr>
+      <tr><td>March</td><td>Starter Plan</td><td>140</td><td>$2,800</td></tr>
+      <tr><td>April</td><td>Enterprise</td><td>12</td><td>$24,000</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Reading List</h2>
+  <ul>
+    <li><a href="https://example.com/clean-code">Clean Code</a> — Robert C. Martin</li>
+    <li><a href="https://example.com/pragmatic">The Pragmatic Programmer</a> — Hunt &amp; Thomas</li>
+    <li><a href="https://example.com/refactoring">Refactoring</a> — Martin Fowler</li>
+    <li><a href="https://example.com/dddd">Domain-Driven Design</a> — Eric Evans</li>
+  </ul>
+</body>
+</html>

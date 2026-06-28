@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="popup.css" />
+  <title>Page to CSV</title>
+</head>
+<body>
+  <header class="header">
+    <div class="brand">
+      <span class="logo" aria-hidden="true"></span>
+      <h1>Page to CSV</h1>
+    </div>
+    <button id="rescan" class="btn btn-ghost" title="Scan the current page again">Rescan</button>
+  </header>
+
+  <p id="status" class="status">Scanning page…</p>
+
+  <main id="results" class="results"></main>
+
+  <footer class="footer">
+    <span>100% local — your data never leaves your browser.</span>
+    <a id="repo" href="https://github.com/lfameS/page-to-csv" target="_blank" rel="noopener">by İzzet · GitHub</a>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
